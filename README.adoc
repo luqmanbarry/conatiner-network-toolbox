@@ -2,13 +2,14 @@
 
 ===  Invocation Guide
 
-*Note:* You could just build the image and launch a pod with it.
-
 ==== Locally launch container
 
-* Invocation format: sh toolbox.sh _container-runtime_
+* Invocation format: `sh toolbox.sh _container-runtime_`
 
-* Example: `sh toolbox.sh podman`
+[source,bash]
+----
+sh toolbox.sh podman
+----
 
 * Non linux users, to enable *podman* locally, run `podman machine start`
 
@@ -28,8 +29,9 @@ podman build -t REGISTRY/IMAGE_NAME .
 ----
 podman login -u USERNAME -p PASSWORD REGISTRY
 ----
-+
+
 . Launch net-toolbox pod
++
 [source,bash]
 ----
 kubectl run net-toolbox  -it --image=REGISTRY/IMAGE_NAME --restart=Never -- /bin/bash
