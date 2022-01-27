@@ -1,5 +1,7 @@
 == Dockerfile for network troubleshooting
 
+A ubi8/ubi based container image for troubleshooting network latency in OpenShift/Kubernetes cluster.
+
 ===  Invocation Guide
 
 ==== Locally launch container
