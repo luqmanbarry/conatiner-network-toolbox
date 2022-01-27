@@ -33,6 +33,13 @@ podman build -t REGISTRY/IMAGE_NAME .
 [source,bash]
 ----
 podman login -u USERNAME -p PASSWORD REGISTRY
+# Use one of these commands
+# -- Push with podman
+podman push REGISTRY/IMAGE_NAME
+# -- Push with docker
+docker push REGISTRY/IMAGE_NAME
+# -- Push with skopeo
+skopeo copy containers-storage:localhost/REGISTRY/IMAGE_NAME docker://REGISTRY/IMAGE_NAME
 ----
 
 . Launch net-toolbox pod
