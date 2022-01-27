@@ -45,6 +45,7 @@ docker push REGISTRY/IMAGE_NAME
 skopeo copy containers-storage:localhost/REGISTRY/IMAGE_NAME docker://REGISTRY/IMAGE_NAME
 ----
 .. For OpenShift users, import image as ImageStream
++
 [source,bash]
 ----
 # Login to remote registry with podman
