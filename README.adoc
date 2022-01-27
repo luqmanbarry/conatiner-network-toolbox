@@ -2,6 +2,9 @@
 
 A ubi8/ubi based container image for troubleshooting network latency in OpenShift/Kubernetes cluster.
 
+* For a list of programs available in the image, look at `packages.txt` in this repository.
+* To add more programs, edit the `packages.txt` file. Note the program needs to be compatible with yum package management.
+
 ===  Invocation Guide
 
 ==== Locally launch container
