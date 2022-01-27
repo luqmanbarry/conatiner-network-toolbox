@@ -7,7 +7,7 @@ A ubi8/ubi based container image for troubleshooting network latency in OpenShif
 
 ===  Invocation Guide
 
-==== Locally launch container
+==== Using the image locally
 
 * Invocation format: `sh toolbox.sh _container-runtime_`
 
@@ -19,7 +19,7 @@ sh toolbox.sh podman
 * Non linux users, to enable *podman* locally, run `podman machine start`
 
 
-==== Using image within Kubernetes cluster
+==== Using image within Kubernetes/OpenShift cluster
 
 . Build Image 
 +
