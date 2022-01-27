@@ -34,12 +34,33 @@ podman build -t REGISTRY/IMAGE_NAME .
 ----
 podman login -u USERNAME -p PASSWORD REGISTRY
 # Use one of these commands
+
 # -- Push with podman
 podman push REGISTRY/IMAGE_NAME
+
 # -- Push with docker
 docker push REGISTRY/IMAGE_NAME
+
 # -- Push with skopeo
 skopeo copy containers-storage:localhost/REGISTRY/IMAGE_NAME docker://REGISTRY/IMAGE_NAME
+----
+.. For OpenShift users, import image as ImageStream
+[source,bash]
+----
+# Login to remote registry with podman
+podman login -u USERNAME -p PASSWORD REGISTRY
+
+# Create authN secret from podman auth file -- RHEL and podman
+oc create secret generic SECRET_NAME --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type=kubernetes.io/dockerconfigjson
+
+# Create authN secret with registry USERNAME and PASSWORD/TOKEN
+oc create secret docker-registry NAME --docker-username=USERNAME --docker-password=PASSWORD --docker-email=email
+
+# Link secret to deployer, default, builder ServiceAccount; depending on your context
+oc secrets link SERVICE_ACCOUNT SECRET --for pull
+
+# Import image into OpenShift as ImageStream
+oc import-image net-toolbox --from REGISTRY/IMAGE_NAME --confirm
 ----
 
 . Launch net-toolbox pod
