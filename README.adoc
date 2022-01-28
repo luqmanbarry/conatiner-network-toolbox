@@ -51,10 +51,15 @@ skopeo copy containers-storage:localhost/REGISTRY/IMAGE_NAME docker://REGISTRY/I
 # Login to remote registry with podman
 podman login -u USERNAME -p PASSWORD REGISTRY
 
-# Create authN secret from podman auth file -- RHEL and podman
+# Login to OpenShift/Kubernetes cluster
+oc login -u USERNAME -p PASSWORD API_SERVER
+
+# Next two commands are only required if image being pulled from private registry
+
+# If RHEL & Podman user, Create authN secret from podman auth file
 oc create secret generic SECRET_NAME --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type=kubernetes.io/dockerconfigjson
 
-# Create authN secret with registry USERNAME and PASSWORD/TOKEN
+# Every other scenario, Create authN secret with registry USERNAME and PASSWORD/TOKEN
 oc create secret docker-registry NAME --docker-username=USERNAME --docker-password=PASSWORD --docker-email=email
 
 # Link secret to deployer, default, builder ServiceAccount; depending on your context
@@ -70,3 +75,7 @@ oc import-image net-toolbox --from REGISTRY/IMAGE_NAME --confirm
 ----
 kubectl run net-toolbox  -it --image=REGISTRY/IMAGE_NAME --restart=Never -- /bin/bash
 ----
+
+. Locally access reports
+
+You could use the concept of volume mounts or `kubectl cp`, `oc rsync` commands to copy files from container to local disk.
