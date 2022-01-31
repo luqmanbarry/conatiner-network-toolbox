@@ -14,3 +14,5 @@ rsync
 socat
 python3
 python3-pip
+traceroute
+fio
